@@ -21,7 +21,11 @@ val sampleAllCountries = listOf(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SearchCountryScreen(viewState: SearchCountryScreenState) {
+fun SearchCountryScreen(
+    viewState: SearchCountryScreenState,
+    onNavAction: () -> Unit
+//    onCountryDetailsEvent: (countryName: String) -> Unit
+) {
     // TODO: NAVIGATION - on country click, open CountryDetails Screen
     Column {
         // TODO: SEARCHBAR going to uncomment this later and focus on it when polishing. For now I just need a list of clickable Countries

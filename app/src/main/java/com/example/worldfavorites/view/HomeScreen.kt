@@ -1,8 +1,10 @@
 package com.example.worldfavorites.view
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -26,10 +28,14 @@ data class CountryItemState (
 
 @Composable
 fun CountryItem(viewState: CountryItemState, onClick: () -> Unit ){
-    Column(modifier = Modifier.padding(horizontal = 2.dp, vertical = 5.dp)) {
-        Text(viewState.name)
+    Column(
+        modifier = Modifier
+            .padding(horizontal = 2.dp, vertical = 5.dp)
+            .clickable(onClick = onClick)
+    ) {
+        Text(viewState.name, style = MaterialTheme.typography.titleSmall)
         viewState.description?.let{
-            Text(it)
+            Text(it, style = MaterialTheme.typography.bodyMedium)
         }
     }
 }
@@ -62,29 +68,37 @@ data class HomeScreenState(
 //fun HomeScreen ()
 @Composable
 fun HomeScreen(
-    viewState: HomeScreenState
+    viewState: HomeScreenState,
+    onNavEvent: () -> Unit
 ){
     Column() {
+        Text(
+            "My Favorite Countries",
+            color = MaterialTheme.colorScheme.primary,
+            style = MaterialTheme.typography.titleMedium
+//            fontStyle = FontStyle.
+            )
         viewState.favoriteCountries.forEach { country ->
             CountryItem(country, {})
         }
-    }
-    // TODO: NAVIGATION - onClick should lead to SearchCountryScreen
-    IconButton(onClick = {}) {
-        Text("Add Country")
+        IconButton(onClick = onNavEvent) {
+            Text("Add Country")
+        }
     }
 }
+
+val sampleHomeScreenState =  HomeScreenState(
+    favoriteCountries = sampleCountryItemStates
+)
 
 @Composable
 @Preview
 fun HomeScreenPreview(){
     val sampleHomeScreens = listOf(
-        HomeScreenState(
-            favoriteCountries = sampleCountryItemStates
-        )
+        sampleHomeScreenState
     )
 
     Column(){
-        sampleHomeScreens.forEach { HomeScreen(it) }
+        sampleHomeScreens.forEach { HomeScreen(it, {}) }
     }
 }
