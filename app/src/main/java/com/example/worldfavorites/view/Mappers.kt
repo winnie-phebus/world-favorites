@@ -1,6 +1,8 @@
 package com.example.worldfavorites.view
 
 import com.example.worldfavorites.network.Country
+import com.example.worldfavorites.view.components.CountryItemState
+import com.example.worldfavorites.view.components.CountryItemStatus
 
 fun Country.toCountryItemState(): CountryItemState {
     return CountryItemState(

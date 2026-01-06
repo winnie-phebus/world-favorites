@@ -33,7 +33,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.worldfavorites.view.components.AppText
+import com.example.worldfavorites.view.components.CountryItem
+import com.example.worldfavorites.view.components.CountryItemState
+import com.example.worldfavorites.view.viewmodel.SearchCountryViewState
 
 val sampleAllCountries = listOf(
     CountryItemState("USA"),
@@ -131,7 +133,7 @@ fun SearchCountryScreen(
                         .padding(16.dp),
                     contentAlignment = Alignment.Center
                 ) {
-                    AppText(
+                    Text(
                         text = viewState.errorMessage.ifEmpty { "An error occurred" },
                         style = MaterialTheme.typography.bodyMedium
                     )

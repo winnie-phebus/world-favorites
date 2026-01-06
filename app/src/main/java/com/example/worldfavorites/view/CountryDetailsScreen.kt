@@ -26,6 +26,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.worldfavorites.view.components.CountryItemState
+import com.example.worldfavorites.view.viewmodel.CountryDetailsViewModel
 
 data class CountryDetailsSceneState(
     val country: CountryItemState

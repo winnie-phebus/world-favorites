@@ -1,8 +1,10 @@
-package com.example.worldfavorites.view
+package com.example.worldfavorites.view.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.worldfavorites.data.local.FavoriteCountryDao
+import com.example.worldfavorites.view.components.CountryItemState
+import com.example.worldfavorites.view.components.CountryItemStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -10,7 +12,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-// Home Screen State
 interface HomeScreenState {
     data class Success(val favoriteCountries: List<CountryItemState>? = null) : HomeScreenState
     data class Error(val errorMessage: String = "") : HomeScreenState

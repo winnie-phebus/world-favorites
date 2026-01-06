@@ -1,4 +1,4 @@
-package com.example.worldfavorites.view
+package com.example.worldfavorites.view.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

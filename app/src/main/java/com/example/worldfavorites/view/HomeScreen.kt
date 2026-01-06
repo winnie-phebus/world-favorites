@@ -17,11 +17,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -33,9 +31,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.example.worldfavorites.view.components.AppText
+import com.example.worldfavorites.view.components.CountryDetailsBottomSheet
+import com.example.worldfavorites.view.components.CountryItem
+import com.example.worldfavorites.view.components.CountryItemAction
+import com.example.worldfavorites.view.components.CountryItemActionIcon
+import com.example.worldfavorites.view.components.CountryItemState
+import com.example.worldfavorites.view.viewmodel.HomeSceneViewModel
+import com.example.worldfavorites.view.viewmodel.HomeScreenState
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
     onNavEvent: () -> Unit,
@@ -137,7 +140,7 @@ fun HomeScreen(
                         .padding(16.dp),
                     contentAlignment = Alignment.Center
                 ) {
-                    AppText(
+                    Text(
                         text = state.errorMessage.ifEmpty { "An error occurred!" },
                         style = MaterialTheme.typography.bodyMedium
                     )
@@ -156,22 +159,14 @@ fun HomeScreen(
         }
     }
 
-    if (showEditBottomSheet && countryToEdit != null) {
-        ModalBottomSheet(
-            onDismissRequest = {
+    if (showEditBottomSheet) {
+        CountryDetailsBottomSheet(
+            country = countryToEdit,
+            isEditMode = true,
+            onDismiss = {
                 showEditBottomSheet = false
                 countryToEdit = null
-            },
-            containerColor = MaterialTheme.colorScheme.primary
-        ) {
-            CountryDetailsScene(
-                viewState = CountryDetailsSceneState(country = countryToEdit!!),
-                isEditMode = true,
-                onNavEvent = {
-                    showEditBottomSheet = false
-                    countryToEdit = null
-                }
-            )
-        }
+            }
+        )
     }
 }

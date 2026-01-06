@@ -1,8 +1,10 @@
-package com.example.worldfavorites.view
+package com.example.worldfavorites.view.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.worldfavorites.network.WorldFavoritesApi
+import com.example.worldfavorites.view.components.CountryItemState
+import com.example.worldfavorites.view.toCountryItemState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
